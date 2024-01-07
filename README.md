@@ -91,8 +91,6 @@ https://user-images.githubusercontent.com/75828760/127818439-0672a363-6aee-4758-
 - That's all, now just Sign Up to POST-O-BLOG and compose your own posts.
 <br>
 <br>
-<br>
-<br>
 
 
 ## CONTRIBUTING
