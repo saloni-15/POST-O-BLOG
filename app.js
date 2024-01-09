@@ -106,7 +106,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "https://post-o-blog.herokuapp.com/auth/google/callback",
+      callbackURL: "https://post-o-blog.up.railway.app/auth/google/callback",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
