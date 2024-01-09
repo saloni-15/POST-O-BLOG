@@ -10,7 +10,7 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
 const methodOverride = require("method-override");
-const marked = require("marked");
+const {marked} = require("marked");
 const createDomPurify = require("dompurify");
 const { JSDOM } = require("jsdom");
 const dompurify = createDomPurify(new JSDOM().window);
@@ -18,7 +18,7 @@ const dompurify = createDomPurify(new JSDOM().window);
 const app = express();
 
 app.set("view engine", "ejs");
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended:true}));
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
 
@@ -68,7 +68,7 @@ const postSchema = new mongoose.Schema({
 
 postSchema.pre("validate", function(next){
   if(this.markdown){
-    this.sanitizedHtml = dompurify.sanitize(marked(this.markdown))
+    this.sanitizedHtml = dompurify.sanitize(marked.parse(this.markdown))
   }
   next();
 })
@@ -501,7 +501,6 @@ app.post("/delete", (req, res) => {
             res.send("There was an error. Please try again.");
           } else {
             if (deletedPost) {
-              console.log(deletedPost);
               res.redirect("/profile");
             }
           }
