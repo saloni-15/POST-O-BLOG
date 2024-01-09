@@ -218,9 +218,17 @@ app.post("/signin", (req, res) => {
 });
 
 //get LogOut
-app.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect("/");
+app.get("/logout", (req, res, next) => {
+  req.logout((err) => {
+    console.log(err);
+    if (err) {
+      console.log(err);
+      return next(err);
+    }
+    else{
+      res.redirect("/");
+    }
+  });
 });
 
 //get Compose
